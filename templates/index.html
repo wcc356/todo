@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% block content %}
+    <div id="app">
+        <form @submit.prevent="createTask">
+            <label for="">Create new todo</label>
+            <input type="text" v-model="task.title">
+            <button class="btn btn-success" type="submit">create</button>
+        </form>
+        <div class="m-2">
+            <button class="btn btn-primary" type="submit" @click="getTasks()">All</button>
+            <button class="btn btn-primary" type="submit" @click="getTodoTasks()">todo</button>
+        </div>
+        
+        <ul>
+            <li v-for="task, index in tasks" :key="index" class="mb-4" @dblclick="completeTask(task)" :class="{'completed': task.completed}">
+                {task.title} 
+                <button class="btn btn-sm btn-danger" type="submit" @click="deleteTask(task)">delete</button>
+            </li>
+        </ul>
+    </div>
+{% endblock%}
